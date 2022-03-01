@@ -1,0 +1,692 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load hitcount_tags %}
+
+{% block content %}
+
+
+<head>
+
+</head>
+<style type="text/css">
+.profile-section{
+/*  background-color: #ffffff;
+  padding: 5px;
+  border : 1px solid #dbdbdb;
+
+    border-radius: 1px;*/
+    }
+
+body{
+    background-color: #EBEBEB;
+
+}
+
+
+/* start header */
+
+.navigation {
+  background-color: #ffffff;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 50px;
+  box-sizing: border-box;
+  z-index: 2;
+  /* animation magic */
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+}
+
+.shrink {
+  height: 50px;
+}
+
+.navigation .logo a {
+  position: relative;
+  color: #000000;
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+}
+
+.navigation-search-container {
+  position: relative;
+}
+
+.navigation-search-container input {
+  background-color: #EBEBEB;
+  padding: 3px 20px;
+  padding-left: 25px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.0975);
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.navigation-search-container .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: black;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 650px) {
+  /* Navigation */
+  .navigation {
+    padding: 0 20px;
+    justify-content: space-between;
+  }
+  .navigation-search-container {
+    display: none;
+  }
+  .navigation-icons {
+    display: flex;
+  }
+}
+
+.navigation-icons {
+  display: flex;
+}
+
+.navigation-search-container input:focus {
+  outline: none;
+}
+
+.navigation-search-container input::placeholder {
+  text-align: center;
+}
+
+.navigation-icons a {
+  text-decoration: none;
+}
+
+.navigation-link i {
+  margin-left: 30px;
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.notification-bubble-wrapper {
+  position: relative;
+  top: -30px;
+  left: 17px;
+}
+
+.notification-bubble {
+  position: absolute;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  background: #ff2c74;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px 5px 3px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  display: none;
+}
+
+
+</style>
+    <div class="row">
+        {% include 'blog/left_side_bar.html' %}
+
+            <style type="text/css">
+                .main--content{
+                    height: 10%;
+    padding: 25px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+                }
+            </style>
+
+        <div class="col-12  col-md-6 scrollable border mb-4" style="background: white;border-radius: 20px;" >
+            <div class="full-width row" >
+                <div class="col-12 " >
+                    <h3 class="white-important mt-3 " style="color:#262626" >
+                        Tweepy
+
+                    </h3>
+                  <!--   <div class="row">
+                        <div class="col-sm-3 ml-4 mr-4">
+                           100 Followers
+                        </div>
+                        <div class="col-sm-3 ml-4 mr-4">
+                           2000 Followers
+                        </div>
+                        <div class="col-sm-3 ml-4 mr-4">
+                            3000 Followers
+                        </div>
+                    </div> -->
+
+
+                    <article class="media content-section ">
+                <div class="row full-width">
+                    <style type="text/css">
+                        .uiea{
+                            color: black;
+                            text-decoration: none;
+                        }
+                    </style>
+                   
+                    <!-- <div class="col-4">
+                        ,Posts
+                    </div> -->
+
+                    <style type="text/css">
+                                    .user-followers{
+                                    padding: 6px;
+                                    padding-left: 11px;
+                                    padding-right: 11px;
+                                    padding-buttom: 11px;
+                        }
+
+                            .user-followers:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                width: 200px;
+                                height: 150px;
+                            } 
+
+                                     .user-follows{
+                                    padding: 6px;
+                                    padding-left: 11px;
+                                    padding-right: 11px;
+                                    padding-buttom: 11px;
+                        }
+
+                            .user-follows:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                width: 200px;
+                                height: 150px;
+                            } 
+
+
+
+                                </style>
+                    {%  if user_profile != None %}
+                     <div class="col-4 ">
+                            <span class="font-weight-bold">Followers</span>
+                    </div>
+                    <div class="col-4">
+                            <span class="font-weight-bold">Following</span>
+                    </div>
+
+                    <div class="col-4">
+                        <span class="font-weight-bold">Post</span>
+                    </div>
+                        <div class="col-4">
+                            <h3 class="white-important follow-click">
+                                <a class="uiea user-followers" href="{% url 'user-followers' user_profile.username %}">
+                                    <span style="color:black">{{ user_profile.profile.followers }}</span>
+                                </a>
+                            </h3>
+                        </div>
+                         <div class="col-4">
+                            <h3 class="white-important follow-click">
+                                <a class="uiea user-followers" href="{% url 'user-follows' user_profile.username %}">
+                                    <span style="color:black">{{ user_profile.profile.following }}</span>
+                                </a>
+                            </h3>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="white-important follow-click">
+                                <a class="uiea user-followers" href="{% url 'user-posts' user_profile.username %}">
+                                    <span style="color:black">{{ countUserPost }}</span>
+                                </a>
+                            </h3>
+                        </div>
+
+
+                    {% else %}
+                        <style type="text/css">
+                                    .user-followers{
+                                    padding: 6px;
+                                    padding-left: 11px;
+                                    padding-right: 11px;
+                                    padding-buttom: 11px;
+                        }
+
+                            .user-followers:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                width: 200px;
+                                height: 150px;
+                            } 
+
+                                     .user-follows{
+                                    padding: 6px;
+                                    padding-left: 11px;
+                                    padding-right: 11px;
+                                    padding-buttom: 11px;
+                        }
+
+                            .user-follows:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                width: 200px;
+                                height: 150px;
+                            } 
+
+
+
+                                </style>
+
+                            
+                        <!-- <div class="col-6">
+                            <a class="uiea" href="{% url 'user-followers' user.username %}">
+                                <h3 class="" class="white-important follow-click">
+                                   <span class="user-followers font-weight-bold" style="color:black"> {{ user.profile.followers }}</span>
+                                </h3>
+                            </a>
+                        </div>
+
+                        <div class="col-6">
+                            <a class="" href="{% url 'user-follows' user.username %}">
+                                <h3 class=" white-important follow-click">
+                                    <span  class="user-follows" style="color:black;">{{ user.profile.following }}</span>
+                                </h3>
+                            </a>
+                        </div> -->
+
+                        
+                    {%  endif %}
+                </div>
+
+            </article>
+                <hr>
+
+                </div>
+
+                 <div class="col-6  no-padding" >
+                 <!--    <h6
+                            style="position: absolute; bottom: 0; right: 0"
+                            class="white-important mb-3">
+                        {{ page_obj.start_index }} - {{ page_obj.end_index }} of
+                        {{ paginator.count }}
+                    </h6> -->
+                </div>
+            </div>
+
+
+            {% for post in posts %}
+
+            <style type="text/css">
+                .hjjh{
+
+                      display: inline-block;
+  font-family:sans-serif;
+
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 16px;
+  border-color: #eee #ddd #bbb;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  margin: 10px 5px;
+  padding: 0 16px 16px 16px;
+  max-width: 600px;
+  max-height: 900px;
+
+
+                }
+            </style>
+                <article class="media   mb-4">
+                <div class="hjjh" style="width: 100%; word-break: break-all;">
+
+                    <div class=" pb-2  row m-0" style="width: 100%; margin-right: 0 !important;">
+                       <div
+                               style="padding-left: 0px !important;"
+                               class="col-8 no-padding d-flex align-items-center mt-2">
+                           <img
+                               class="rounded-circle mr-2"
+                               style="width: 40px; height: 40px;"
+                               src="{{ post.author.profile.image.url }}">
+
+                           <a class="mr-2" href="{% url 'user-posts' post.author %}" style="font-size: 18px;color:black;font-style:Roboto">
+                               {{ post.author|capfirst }}
+
+                           </a>
+                               
+                                   <!--  <small class="">Views: {% get_hit_count for post %}</small> -->
+                       </div>
+                       <style type="text/css">
+                       
+
+                       </style>
+                        <hr>
+                       <div class="col-4   d-flex flex-row-reverse no-padding align-items-center" style="padding-right: 0 !important;">
+  
+
+        <style type="text/css">
+                            .post-delete-icon{
+                                padding: 10px;
+                            }
+            
+
+                            .post-delete-icon:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                
+                            } 
+
+                            .post-update-icon{
+                                padding: 10px;
+                            }
+            
+
+                            .post-update-icon:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;                                 
+                            }
+
+                            
+        </style>
+
+                           {% if post.author == user %}
+                                <a class="material-icons ml-2 font-weight-bold"
+                                   style="font-size: 18px;color:gray;text-decoration: none;"
+                                        href="{% url 'post-delete' post.id %}"
+                                        >
+                                       
+<img class="post-delete-icon" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/25/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png"/>
+                                    </a>
+                                <a class=" font-weight-bold"
+                                   style="font-size: 14px;color:gray;text-decoration: none;"
+                                        href="{% url 'post-update' post.id %}">
+                                        <img class="post-update-icon" src="https://img.icons8.com/ios/25/000000/approve-and-update.png"/>
+
+                                </a>
+
+                            {%  endif %}
+
+
+                       </div>
+                   </div>
+
+                    <div
+                            class=" "
+                            style="width: 100%; height: 1px; background-color: rgba(255, 255, 255, 0.1)">
+                            
+                    </div>
+                            {% if post.image %}
+                            <a href="/post/{{post.id}}">
+                         <img
+                           class=""
+                           
+                           src="{{ post.image.url }}" width="560px" height="400px" style="border-radius: 10px;">
+
+                        {% endif %}
+                    </a>
+                    
+                       
+
+                        <style type="text/css">
+                            .card-body{
+                                color:black;
+                            }
+                           /* a {
+    color: black;
+    text-underline: none;
+     text-decoration: none !important;
+}
+a:hover {
+    color: blue;
+    text-underline: none !important;
+}*/
+
+
+
+/*i:last-of-type {
+    background:transparent;
+    color:;
+}*/
+
+
+.jhjhjhjh{
+color: #262626;
+    color: rgba(var(--i1d,38,38,38),1);    
+}
+
+
+a{
+    text-decoration: none;
+}
+
+/* a:hover {
+    background-color: #eff0f1;
+    border-radius: 100px;
+
+}
+*/
+
+                        </style>
+                        <div class="row mt-4 ml-0">
+                             <small class="ml-4">{{post.date_posted}}</small>
+                            <div class="col-12 " style="display: flex;">
+                                <small>
+
+
+                                    <!-- Like Buttons Here -->
+
+<style type="text/css">
+    .jiueiwuu{
+                                padding: 10px;
+                            }
+            
+
+                            .jiueiwuu:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                
+                            }    
+</style>
+
+
+<a href="#" class="" onClick="document.getElementById('likebutton').submit()" style="color:gray;font-size: 15px;"><img class="jiueiwuu" src="https://img.icons8.com/material-outlined/25/000000/thumb-up.png"/></a> <span style="color:gray; font-size: 16px;" class="mr-3 font-weight-bold">{{post.likes}}</span><a href="#" class="" onClick="document.getElementById('dislikebutton').submit()" style="color:gray;font-size: 15px;"><img class="jiueiwuu" src="https://img.icons8.com/material-outlined/25/000000/thumbs-down.png"/></a> <span style="color:gray; font-size: 16px;" class="font-weight-bold mr-3">{{post.dislikes}}</span>
+
+
+
+
+                                    <form id="likebutton" method="POST" action="{% url 'postpreference' post.id 1 %}">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                    </form>
+
+                                    <form id="dislikebutton" method="POST" action="{% url 'postpreference' post.id 2 %}">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                    </form>
+                                
+
+                                </small>
+
+                         <!-- comment -->
+
+                         <style type="text/css">
+                            .comments-icon {
+     text-shadow: 0 0 3px #000;
+}
+                         </style>
+                                <small style="">
+                                    <a href="/post/{{post.id}}/" style="color:gray; font-size: 15px;" class="mr-2">
+                                      <img class="jiueiwuu" src="https://img.icons8.com/windows/26/000000/comments--v2.png"/><span class="font-weight-bold ml-2" style="font-size: 16px; ">{{ post.number_of_comments }}</span>  <span class="font-weight-bold" style="font-size: 16px;color:gray;">comment(s)</span>
+                                    </a>
+                                </small>
+                          
+                            </div>
+
+
+                            <style type="text/css">
+                                .ehbfjhbj{
+                                    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                                    color: #343a40!important;
+                                    font-size: 15px;
+                                }
+                            </style>
+
+
+                        
+<p class="mt-4 mb-4 ehbfjhbj mr-4 justify-content-center " >
+
+    
+                           <pre style="" class="mt-4"> {{ post.content|linebreaksbr }}</pre>
+    
+</p>
+
+
+
+
+
+
+
+
+                        </div>
+
+                </div>
+                
+                </article>
+
+                 {% empty %}
+
+                    <h3 class="text-dark font-weight-bold">Not Post Yet</h3>
+            {% endfor %}
+
+            <div class="full-width d-flex justify-content-center">
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
+                                href="?page=1">First</a>
+                        <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
+                                href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a class="btn btn-sm btn-info mb-4 mr-2"
+                                href="?page={{ num }}">{{ num }}</a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
+                                href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
+                                href="?page={{ page_obj.next_page_number }}">Next</a>
+                           <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
+                            href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+     
+
+        <div class="col-12 col-md-3 dont-move " >
+                
+            <h3 class="white-important mb-3 mt-0">  </h3>
+
+                {%  if user_profile is None %}
+                <style type="text/css">
+                    .t-section{
+
+                    }
+                </style>
+
+                <article class="t-section bg-white border media content-section" style="color:black">
+
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h3 style="color:#262626" class="font-weight-bold">Search</h3>
+                        </div>
+
+<style type="text/css">
+    .search-field{
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+</style>
+
+<div class="navigation-search-container justify-content-center" style="margin-left: 30px;">
+    <div class="search-container justify-content-center" >
+      <div class="search-container-box">
+        <div class="search-results" >
+            <form action="{% url 'search' %}" method="post" style="color: black;">
+              {% csrf_token %}
+            <i class="fa fa-search mt-2 ml- mr-"></i>
+
+            <style type="text/css">
+                .search-field: focus{
+                    color: black;
+                }
+                input:focus{
+                    color: black;
+                }
+            </style>
+            <input class="ml font-weight-bold text-dark" required name="search" type="text" class="search-field border"  id="zip-code-input" placeholder="Search..." style="border-radius: 30px;padding: 20px;color:black;" >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                        <!-- <ul class="col-12 mt-2">
+                            {% for user in all_users %}
+                                <li>
+                                    <div class="who-to-follow">
+
+                                        <div
+                                               style="padding-left: 0px !important;"
+                                               class="col-8 no-padding d-flex align-items-center">
+                                           <img
+                                               class="rounded-circle mr-2"
+                                               style="width: 20px; height: 20px;"
+                                               src="{{ user.profile.image.url }}">
+                                           <a class="mr-2 white-important" href="{% url 'user-posts' user.username %}">
+                                               {{ user.username|capfirst }}
+                                           </a>
+                                       </div>
+                                        <p>{{ user.email }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul> -->
+
+                    </div>
+
+                </article>
+                {% endif %}
+
+        </div>
+    </div>
+{% endblock content %}

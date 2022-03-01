@@ -1,0 +1,480 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+
+<head>
+
+</head>
+<style type="text/css">
+.profile-section{
+/*  background-color: #ffffff;
+  padding: 5px;
+  border : 1px solid #dbdbdb;
+
+    border-radius: 1px;*/
+    }
+
+body{
+    background-color: #EBEBEB;
+
+}
+
+.white-important {
+    color: #3b3636;
+    font-weight: bold;
+}
+
+.scrollable {
+  overflow-y: auto; 
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+
+}
+
+
+</style>
+    <div class="row">
+
+            <style type="text/css">
+                .main--content{
+                    height: 10%;
+    padding: 25px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+                }
+            </style>
+
+        <div class="col-12  col-md-6 scrollable border mb-4" style="background: white;border-radius: 20px;" >
+            <div class="full-width row" >
+                <div class="col-12 " >
+                    <h3 class="white-important mt-3 mb-3" >
+                        Tweepy
+
+                    </h3>
+                 
+
+
+               
+</div>
+</div>
+
+
+
+
+                <article class="media  mb-4">
+                <div class="hjjh" style="width: 100%; word-break: break-all;">
+
+                    <div class=" pb-2   row m-0" style="width: 100%; margin-right: 0 !important;">
+                      
+                    <!-- write your content here  -->
+
+                     {% if post.image %}
+                            <a href="/post/{{post.id}}">
+                         <img
+                           class=""
+                           
+                           src="{{ post.image.url }}" width="560px" height="400px" style="border-radius: 10px;">
+
+                    </a>
+                        {% endif %}
+
+
+                         <style type="text/css">
+                                .ehbfjhbj{
+                                    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                                    color: #343a40!important;
+                                }
+                            </style>
+
+
+                        <a
+                          class="mt-4 ml-2 "  style="text-decoration: none;font-size: 14px;"
+                            href="{% url 'post-detail' post.id %}">
+<p class="mb-4 ehbfjhbj mr-4 justify-content-center ">
+
+    
+                           <pre style=""> {{ post.content|linebreaksbr }}</pre>
+    
+</p>
+                        </a>
+
+
+                       <div class="col-4   d-flex flex-row-reverse no-padding align-items-center" style="padding-right: 0 !important;">
+  
+
+                       </div>
+                   </div>
+
+                   
+<!-- <div class="row mt-4 ml-0">
+    <div class="col-12 " style="display: flex;">
+    </div>
+</div>
+ --></div>
+</article></div>
+
+
+
+                
+
+                {%  if user_profile is None %}
+                
+               <div class="col-12  col-md-6 scrollable border mb-4" style="background: white;border-radius: 20px;" >
+            <div class="full-width row" >
+                <div class="col-12 " >
+                    <h3 class="white-important mt-3 mb-3" >
+                        Tweepy
+
+                    </h3>
+
+
+<style type="text/css">
+    .jhhwejhd {
+  height: 40%;
+  width:100%;
+  padding: 25px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+</style>
+
+{% for comment in comments %}
+                <div class="" style="width: 100%; word-break: break-all;" class=" " style="color: #262626;">
+                <div class=" pb-2 row m-0" style="width: 100%; margin-right: 0 !important;" >
+            <div class="">
+                   <div class="" 
+                           style="padding-left: 0px !important;"
+                           class="col-8 no-padding d-flex align-items-center">
+                       <img
+                           class="rounded-circle mr-2"
+                           style="width: 20px; height: 20px;"
+                           src="{{ comment.author.profile.image.url }}">
+                       <a class=" mr-2 white-important" href="{% url 'user-posts' comment.author.username %}" >
+                           {{ comment.author }}
+                       </a>
+                   </div>
+                    <small
+                        class="white-important d-flex full-width flex-row-reverse">
+                        {{ comment.date_posted | timesince}}
+                    </small>
+               </div>
+                <div
+                        class="mb-4"
+                        style="width: 100%; height: 1px; background-color: rgba(255, 255, 255, 0.1)"></div>
+                <a style="color: rgba(255, 255, 255, 0.5) !important;">
+                    <p>
+                        <span style="color:black;">{{ comment.content }}</span>
+                    </p>
+
+                </a>
+            </div>
+            </article>
+            <hr>
+        {% endfor %}
+
+                       
+
+               </div>
+           </article>
+                {% endif %}
+</div>
+</div>
+
+
+        
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================
+
+
+
+
+
+
+
+
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-12  col-md-6 scrollable border ml-4" style="background: white;border-radius: 20px;" >
+        <article class="media  mb-4" >
+            <div class="hjjh" style="width: 100%; word-break: break-all;" >
+
+                    <div class=" pb-2   row m-0" style="width: 100%; margin-right: 0 !important;">
+                       <div style="padding-left: 0px !important;"
+                               class="col-8 no-padding d-flex align-items-center mt-4" >
+    <img class="rounded-circle  mr-2" style="width: 40px; height: 40px;" src="{{ post.author.profile.image.url }}">
+                           <a class="mr-2 white-important" href="{% url 'user-posts' post.author %}" style="font-size: 18px;color:black">
+                               {{ post.author|capfirst }}
+
+                           </a>
+                               
+                       </div>
+                           <style type="text/css">
+                            .post-delete-icon{
+                                padding: 10px;
+                            }
+            
+
+                            .post-delete-icon:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                
+                            } 
+
+                            .post-update-icon{
+                                padding: 10px;
+                            }
+            
+
+                            .post-update-icon:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;
+                                
+                            }
+        </style>
+                        <hr>
+                       <div class="col-4   d-flex flex-row-reverse no-padding align-items-center" style="padding-right: 0 !important;">
+  
+
+               <div class="col-4 d-flex flex-row-reverse no-padding align-items-center"
+                    style="padding-right: 0 !important;" >
+                     {% if post.author == user %}
+                                <a class="material-icons ml-2 font-weight-bold"
+                                   style="font-size: 18px;color:gray;text-decoration: none;"
+                                        href="{% url 'post-delete' post.id %}"
+                                        >
+                                       
+<img class="post-delete-icon" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/25/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png"/>
+                                    </a>
+                                <a class=" font-weight-bold"
+                                   style="font-size: 14px;color:gray;text-decoration: none;"
+                                        href="{% url 'post-update' post.id %}">
+                                        <img class="post-update-icon" src="https://img.icons8.com/ios/25/000000/approve-and-update.png"/>
+
+                                </a>
+
+                            {%  endif %}
+               </div>
+           </div>
+
+
+                  
+                            {% if post.image %}
+                         <img
+                           class="mt-4"
+                           
+                           src="{{ post.image.url }}" width="600px" height="400px" style="border-radius: 10px;">
+
+                        {% endif %}
+
+<div class="mb-2  " style="width: 100%; height: 1px; background-color: rgba(255, 255, 255, 0.1)"></div>
+
+
+            <a style="color: rgba(255, 255, 255, 0.5) !important;">
+
+
+                <small
+                    class="white-important d-flex full-width " >
+                    <span class="" style="color:black" style="margin-left:90px;">{{ post.date_posted | timesince }}</span>
+                </small>
+
+
+                            <style type="text/css">
+                                .ehbfjhbj{
+                                    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                                    color: #343a40!important;
+                                }
+
+                                .hjjh{
+
+                      display: inline-block;
+  font-family:sans-serif;
+
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 16px;
+  border-color: #eee #ddd #bbb;
+ 
+
+
+                }
+                            </style>
+
+
+
+
+                        <div
+                          class="mt-4 ml-2 hjjh"  style="text-decoration: none;font-size: 14px;"
+                            href="#">
+<p class="mb-4 ehbfjhbj mr-4 justify-content-center ">
+
+    
+                           <pre style=""> {{ post.content|linebreaksbr }}</pre>
+    
+</p>
+                        </div>
+            </a>
+        </div>
+</div>
+</article>
+</div>
+  <div class="col-12 ml-3 col-md-5 scrollable border mb-4" style="background: white;border-radius: 20px;" >
+
+
+        {% if user is not None %}
+            <div class="col-12 col-md-6 pl-0 pl-md-3 pr-3">
+                <h3 class="white-important mt-3 mb-3" style="color: #262626;">
+                    Add a comment
+                </h3>
+
+                <style type="text/css">
+                    .text-dark{
+                        color: ;
+                    }
+
+                    textarea:focus, input:focus {
+            box-shadow: 0 0 0 0 !important;
+            border-color: #00FBD7 !important;
+            color: #262626 !important;
+        }
+
+
+
+                 </style>
+                <form method="POST">
+                    {% csrf_token %}
+            <div class="ffjkj text-primary mt-4" >
+            <label for="content" class="font-weight-bold " style="color:#262626">Content *</label>
+            {{ form.content  }}
+             </div>                    <div class="form-group">
+                        <button class="btn btn-outline-primary" type="submit">Submit comment</button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+
+
+<style type="text/css">
+    .notes_scroll {
+  height: 40%;
+  width:100%;
+  padding: 25px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+</style>
+
+         {% for comment in comments %}
+            <article class=" media content-section">
+                <div style="width: 100%; word-break: break-all;" class="border p-4 " >
+                <div class="pb-2 row m-0 " style="width: 100%; margin-right: 0 !important;">
+                   <div
+                           style="padding-left: 0px !important;"
+                           class="col-8 no-padding d-flex align-items-center ">
+                       <img
+                           class="rounded-circle mr-2"
+                           style="width: 40px; height: 40px;"
+                           src="{{ comment.author.profile.image.url }}">
+                       <a class="mr-2 white-important" href="{% url 'user-posts' comment.author.username %}">
+                           <span style="color:black">{{ comment.author }}</span>
+                       </a>
+                   </div>
+               </div>
+                <div
+                        class="mb-2 "
+                        style="width: 100%; height: 1px; background-color: rgba(255, 255, 255, 0.1)"></div>
+                <a style="color: rgba(255, 255, 255, 0.5) !important;">
+                    <p>
+                       <span style="color:black"> {{ comment.content }}</span>
+                    </p>
+
+                    <small
+                        class="white-important d-flex full-width flex-row-reverse">
+                        <span style="color:black">{{ comment.date_posted |timesince }}</span>
+                    </small>
+                </a>
+            </div>
+            </article>
+        {% endfor %}
+</div>
+
+
+</div>
+
+    <!-- <div class="row pl-3">
+        <div class="col-12 col-md-6 pl-0">
+         <h3 class="white-important mb-3">
+             Comments
+         </h3>
+        {% for comment in comments %}
+            <article class="media content-section">
+                <div style="width: 100%; word-break: break-all;" class="hovered-tweet-comment-in">
+                <div class="pb-2 row m-0" style="width: 100%; margin-right: 0 !important;">
+                   <div
+                           style="padding-left: 0px !important;"
+                           class="col-8 no-padding d-flex align-items-center">
+                       <img
+                           class="rounded-circle mr-2"
+                           style="width: 20px; height: 20px;"
+                           src="{{ comment.author.profile.image.url }}">
+                       <a class="mr-2 white-important" href="{% url 'user-posts' comment.author.username %}">
+                           {{ comment.author }}
+                       </a>
+                   </div>
+               </div>
+                <div
+                        class="mb-2"
+                        style="width: 100%; height: 1px; background-color: rgba(255, 255, 255, 0.1)"></div>
+                <a style="color: rgba(255, 255, 255, 0.5) !important;">
+                    <p>
+                        {{ comment.content }}
+                    </p>
+
+                    <small
+                        class="white-important d-flex full-width flex-row-reverse">
+                        {{ comment.date_posted | date:"H:i l, d.m.y" }}
+                    </small>
+                </a>
+            </div>
+            </article>
+        {% endfor %}
+        </div>
+
+ -->
+        
+
+
+
+    </div>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,162 @@
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kodinger">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/my-login.css">
+    <style type="text/css">
+        html,body {
+    height: 100%;
+}
+
+body.my-login-page {
+    background-color: #EBEBEB;
+    font-size: 14px;
+}
+
+
+.my-login-page .brand {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+    position: relative;
+    z-index: 1;
+}
+
+.my-login-page .brand img {
+    width: 100%;
+}
+
+.my-login-page .card-wrapper {
+    width: 400px;
+}
+
+.my-login-page .card {
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.my-login-page .card.fat {
+    padding: 10px;
+}
+
+.my-login-page .card .card-title {
+    margin-bottom: 30px;
+}
+
+.my-login-page .form-control {
+    border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+    width: 100%;
+}
+
+.my-login-page .btn.btn-block {
+    padding: 12px 10px;
+}
+
+.my-login-page .footer {
+    margin: 40px 0;
+    color: #888;
+    text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+    .my-login-page .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .my-login-page .card.fat {
+        padding: 0;
+    }
+
+    .my-login-page .card.fat .card-body {
+        padding: 15px;
+    }
+}
+/*.form-text .text-muted{
+}   */
+
+/*.text-muted{
+    visibility: hidden;
+}   
+
+.hint_id_password1{
+    visibility: hidden;
+
+}*/
+
+/*
+small {
+  padding:0;
+
+}
+*/
+
+    </style>
+</head>
+</head>
+<body class="my-login-page mt-4">
+    <section class="h-100">
+        <div class="container h-50" >
+            <div class="row justify-content-md-center  h-100 ">
+                <div class="card-wrapper ">
+                  <!--   <div class="brand">
+                        <img src="img/logo.jpg" alt="logo">
+                    </div> -->
+                    <div class="card border fat">
+                        <div class="card-body">
+                            <h4 class="card-title font-weight-bold">Login</h4>
+                            <form method="POST" class="my-login-validation" novalidate="">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ form | crispy }}
+                                </div>
+
+                                      <div class="form-group m-0">
+                                    <button type="submit" class="btn btn-primary btn-block font-weight-bold border">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                 <!--    <div class="footer">
+                        Copyright &copy; 2017 &mdash; Your Company 
+                    </div> -->
+                                <div class="card border mt-4 pb-4">
+                                    <div class="mt-4 text-center font-weight-bold">
+                                       Do you need an account? <a class="ml-2" href="{% url 'register-users' %}">Sign up</a>
+                                    </div>
+                                    <div class="text-center font-weight-bold">
+                                        Reset Your Password ? <a href="{% url 'password-reset' %}">Click Here</a>
+                                    </div>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
+</body>
+</html>

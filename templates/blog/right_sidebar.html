@@ -1,0 +1,72 @@
+<div class="col-12 col-md-3 dont-move" >
+                
+            <h3 class="white-important mb-3 mt-0 ">  </h3>
+
+                {%  if user_profile is None %}
+                <style type="text/css">
+                    .t-section{
+
+                    }
+                </style>
+
+                <article class="t-section bg-white border media content-section" style="color:black">
+
+                    <div class="row ">
+                        <div class="col-12">
+                            <h3 style="color:#262626">Search</h3>
+                        </div>
+
+<style type="text/css">
+    .search-field{
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+</style>
+
+<div class="navigation-search-container justify-content-center" style="margin-left: 30px;">
+    <div class="search-container justify-content-center" >
+      <div class="search-container-box">
+        <div class="search-results" >
+            <form action="{% url 'search' %}" method="post">
+              {% csrf_token %}
+            <i class="fa fa-search mt-2 ml- mr-"></i>
+            <style type="text/css">
+                .search-field{
+                    color: black;
+                }
+            </style>
+            <input class="ml-" required name="search" type="text" class="search-field border"  id="zip-code-input" placeholder="Search..." style="border-radius: 30px;padding: 20px;" >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                        <!-- <ul class="col-12 mt-2">
+                            {% for user in all_users %}
+                                <li>
+                                    <div class="who-to-follow">
+
+                                        <div
+                                               style="padding-left: 0px !important;"
+                                               class="col-8 no-padding d-flex align-items-center">
+                                           <img
+                                               class="rounded-circle mr-2"
+                                               style="width: 20px; height: 20px;"
+                                               src="{{ user.profile.image.url }}">
+                                           <a class="mr-2 white-important" href="{% url 'user-posts' user.username %}">
+                                               {{ user.username|capfirst }}
+                                           </a>
+                                       </div>
+                                        <p>{{ user.email }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul> -->
+
+                    </div>
+
+                </article>
+            </div>
+                {% endif %}

@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style type="text/css">
+  
+    .textarea:focus, input:focus{
+        border-color: #262626 !important;
+        color: #262626 !important;
+        box-shadow: 0 0 0 0 !important;
+    }
+</style>
+
+<div class="container  col-12 border scrollable col-md-6 mb-4" style="background-color: white;border-radius:20px;">
+    
+    <h3 class="white-important mt-4">
+       <style type="text/css">
+     .back__to__home{
+                                padding: 10px;
+                                text-decoration: none;
+                            }
+            
+
+                            .back__to__home:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 30px;
+                                color: black;                                 
+                            }
+
+
+                            
+</style>
+
+    <h3 class="white-important text-dark mt-3 mb-2">
+      <a href="{% url 'user-posts' request.user %}"> <img class="back__to__home font-weight-bold" src="https://img.icons8.com/ios/30/000000/left.png"/></a> Change profile data
+    </h3>
+
+    <form class="col-12 no-padding" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{ uform | crispy }}
+            {{ pform | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">Change data</button>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock content %}

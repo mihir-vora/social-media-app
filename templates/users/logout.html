@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<style type="text/css">
+    body{
+        background-color: #EBEBEB;
+    }
+</style>
+<div class="container">
+    <h3 class="white-important" style="color:gray">You've been logged out</h3>
+    <div class="pt-3">
+        <small class="font-weight-bold" style="color:black; ">
+           Login again? <a class="ml-2" style="color:blue;" href="{% url 'login' %}">Login</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

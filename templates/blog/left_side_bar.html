@@ -1,0 +1,188 @@
+<div class="col-12 col-md-3 pr-4 dont-move">
+<!--             <a href="/"> <h2>App Name</h2></a><br>
+ -->
+
+<!-- ====================profile-section========================== -->
+
+<div class="profile-section  t-section bg-white border  content-section " style="width: 105%;" >
+    <!--<h3 class="white-important p-2">Profile</h3> -->
+             <article class="media  content-section" style="height: 140px; width: 100%">
+                {%  if user_profile != None %}
+                    <div class="mt-2 d-flex full-width align-items-center">
+                        <img
+                           class="rounded-circle mr-3 img-fluid"
+                           style="width: 90px; height: 90px;"
+                           src="{{ user_profile.profile.image.url }}">
+                        <div>
+
+                            <h4 style="text-align: left"
+                                    class="" >
+                               <span class="font-weight-bold" style="color:#262626;"> {{ user_profile.username }}</span>
+                            </h4>
+                            <h6 style="text-align: left"
+                                    class="email-profile">
+                                <span style="color:#262626;">{{ user_profile.email }}</span>
+                            </h6>
+                            
+                        {% if request.user == user_profile.profile.user %}
+                            <h6>
+                                <a href="{% url 'profile' %}">Edit Profile</a>
+                            </h6>
+                        {% endif %}
+
+                        </div>
+
+                    </div>
+                </article>
+
+
+                <div class="content-section ">
+                    <h6>
+
+                        <span class="" style="color:#262626;"> {{ user_profile.profile.bio |linebreaks}}</span>
+                    </h6>
+                </div>
+
+                {%  else %}
+                <!-- my profile -->
+
+                    <div class="mt-2 d-flex  full-width align-items-center">
+
+                        <style type="text/css">
+                        .kjfkjefb{
+                            padding: 12px;
+                        }
+
+
+                            .kjfkjefb:hover {
+                                background-color: #E6E6FA   ;
+                                text-underline: none !important;
+                                border-radius: 20px;
+                                color: black;
+                            }   
+
+
+
+/*i:last-of-type {
+    background:transparent;
+    color:;
+}*/
+                        </style>
+
+
+                        <div class="jfkjgbkjfbjb white-important" >
+
+
+
+                            <a class="nav-link" href="http://127.0.0.1:8000/" style="text-decoration: none;color:black;" >
+                            <span class="kjfkjefb white-important" style="text-align: left; ">
+                                <img class="mr-2" src="https://img.icons8.com/ios/20/000000/home-page.png"/><span style="color:#262626;">Home</span>
+                            </span>
+                            </a>    
+
+                            <a class="nav-link" href="{% url 'user-posts'  request.user %}" style="text-decoration: none;color:black;">
+                             <span class="kjfkjefb white-important" style="text-align: left;color:black; ">
+                              <img class="mr-2"  src="https://img.icons8.com/ios/20/000000/user--v2.png"/>Profile    
+                            </span>
+                            </a>
+                        <a class="nav-link" href="http://127.0.0.1:8000/" style="text-decoration: none;color:black;">
+
+                            <span class="kjfkjefb white-important" style="text-align: left;color:black; "
+                                  >
+                              <img src="https://img.icons8.com/ios/20/000000/appointment-reminders--v2.png"/> Notification    
+                            </span>
+
+                        </a>
+
+                          <a class="nav-link" href="{% url 'blog-about' %}" style="text-decoration: none;color:black;">
+
+                            <span class="kjfkjefb white-important" style="text-align: left;color:black; "
+                                  >
+                              <img src="https://img.icons8.com/ios/20/000000/about.png"/> About    
+                            </span>
+
+                        </a>
+
+                        <a class="nav-link" href="{% url 'feedback' %}" style="text-decoration: none;color:black;">
+                             <span class="kjfkjefb white-important" style="text-align: left;color:black; ">
+                               <img src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/000000/external-feedback-feedback-those-icons-lineal-those-icons.png"/>  Feedback    
+                            </span>
+                        </a>
+                        </div>
+                    </div>
+                {%  endif %}
+            </article>
+            <!-- <article class="media content-section ">
+                <div class="row full-width pl-2 mt-4">
+                    <div class="col-6 mt-4">
+                            Followers
+                    </div>
+                    <div class="col-6 mt-4">
+                            Following
+                    </div>
+                    {%  if user_profile != None %}
+                        <div class="col-6">
+                            <h3 class="white-important follow-click">
+                                <a href="{% url 'user-followers' user_profile.username %}">
+                                    {{ user_profile.profile.followers }}
+                                </a>
+                            </h3>
+                        </div>
+                         <div class="col-6">
+                            <a href="{% url 'user-follows' user_profile.username %}">
+                                <h3 class="white-important follow-click">
+                                    {{ user_profile.profile.following }}
+                                </h3>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-6">
+                            <a href="{% url 'user-followers' user.username %}">
+                                <h3 class="white-important follow-click">
+                                    {{ user.profile.followers }}
+                                </h3>
+                            </a>
+                        </div>
+
+                        <a href="{% url 'user-follows' user.username %}">
+                            <div class="col-6">
+                                <h3 class="white-important follow-click">
+                                    {{ user.profile.following }}
+                                </h3>
+                            </div>
+                        </a>
+                    {%  endif %}
+                </div>
+            </article> -->
+
+            <div class="d-flex mt-4" >
+                {% if user_profile is None %}
+                <div class="mt-4" style="margin-left: auto; margin-top: auto;margin-right:auto;">
+                    <a class="btn btn-sm btn-outline-primary  mb-4 mr-3 " href="{% url 'post-create' %}" style="margin-top: 50px;">Tweepy
+                    </a>
+                </div>
+                {% endif %}
+                {%  if user_profile is not None and user_profile.id != user.id  and user.username != '' %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <button style="margin-left: 18px" class="btn btn-sm btn-outline-primary"
+                                    name="{% if can_follow %}follow{% else %}unfollow{% endif %}"
+                                    type="submit">
+                                 {% if can_follow %}
+                                     FOLLOW
+                                 {% else %}
+                                     UNFOLLOW
+                                 {% endif %}
+                            </button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+            
+
+
+
+           
+            </div>
+        </div>

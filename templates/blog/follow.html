@@ -1,0 +1,61 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+
+</style>
+<div class="container">
+    {% if follow == 'follows' %}
+         <div class="col-12 no-padding">
+            <h3 class="white-important mb-3 text-dark">
+                Follows
+            </h3>
+            <div class="row pr-3 pl-3">
+                {% for follow in follows %}
+                    <div class="col-6 col-md-3 pl-0">
+                        <article class="media content-section">
+                            <div>
+<img
+class="rounded-circle mr-2"
+style="width: 40px; height: 40px;"
+src="{{ follow.follow_user.profile.image.url }}">
+<a class="mr-2 white-important text-dark" href="{% url 'user-posts' follow.follow_user.username %}" >
+<span style="color:#262626;">{{ follow.follow_user.username }}</span>
+                               </a>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if follow == 'followers' %}
+         <div class="col-12 no-padding">
+            <h3 class="white-important mb-3" style="color:#262626;">
+                Followers
+            </h3>
+            <div class="row pr-3 pl-3">
+                {% for follow in follows %}
+                    <div class="col-6 col-md-3 pl-0">
+                        <article class="media content-section">
+                            <div>
+                                <img
+                                           class="rounded-circle mr-2" 
+                                           style="width: 40px; height: 40px;"
+                                           src="{{ follow.user.profile.image.url }}">
+                               <a class="mr-2 white-important" href="{% url 'user-posts' follow.user.username %}" style="color:#262626;">
+                                   <span style="color:black;">{{ follow.user.username }}</span>
+                               </a>
+                            </div>
+                        </article>
+                    </div>
+                    {% empty %}
+                        <h4 class="text-dark ">No one is following you yet</h4>
+                {% endfor %}
+            </div>
+        </div>
+      </div>
+    {% endif %}
+{% endblock content %}
