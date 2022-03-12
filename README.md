@@ -1,11 +1,14 @@
-# Social Media App
+<!-- ![GitHub Contributors Image](https://contrib.rocks/image?repo=ervoramihir/social-media-app) -->
+
+
+<h1 align="center"><b>Social Media App</b></h1>
 
 <p align="center">
   <img src="media/logo/websiter-logo.png" alt="socail-media-app">
 </p>
-<p align="center">
-  Live Demo
-</p>
+<h5 align="center">
+  <b>Live Demo</b>
+</h5>
 
 <p align="justify"
   social media application is a 'microblogging(It allows you to send posts known as ‘tweepy’. We can share photos, videos, and Caption(up to 1000 characters in length. ) on The Mumble with our followers)'.
