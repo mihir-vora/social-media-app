@@ -13,8 +13,9 @@
 <p align="justify"
   social media application is a 'microblogging(It allows you to send posts known as ‘tweepy’. We can share photos, videos, and Caption(up to 1000 characters in length. ) on The Mumble with our followers)'.
 
-
-
+<h2 align="center">
+  <b>INTRODUCTION</b>
+</h2>
 After the online sign-up or Login process, users can sharing photos and videos with Type your caption(Get creative and write a nice, interesting caption to go with your photo and Video.) called "tweepy". Then your followers can see your post then your followers can Like(Clicking Like Button below a post on Mumble way to let people know that you enjoy it without leaving a comment. Just like a comment, anyone who can see the post can see that you liked it and The person who posted the video will get a notification that you liked it.When you like something, this lets us know to show you other content that we think you’d also like to see) or DisLike(If you dislike your post, it means that the user did not like your post - image or video and caption) and Comment(Below every posts there are “Comment” buttons. If the image has any recent comments they will appear below those posts. Comments allow your followers to write a comment on your post. Users are notified if you “Comment” their post.) on your post.
 
 
