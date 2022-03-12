@@ -41,7 +41,7 @@ At the top of the your profile page, you should see three numbers. One indicates
   <b>Technology Stack</b>
 </h1>
 
-* Frontend Tech : HTML, BOOSTRAP, CSS, JS
+* Frontend Tech : HTML, BOOTSTRAP, CSS, JS
 * Web FrameWorkd : Django
 * Database : SQLite3
 * API : RESTful API
